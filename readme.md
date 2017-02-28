@@ -1,4 +1,4 @@
-## Blog Tutorial Project Laravel Framework 5.2.*
+## Blog Tutorial Project with Laravel Framework 5.2.*
 
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
