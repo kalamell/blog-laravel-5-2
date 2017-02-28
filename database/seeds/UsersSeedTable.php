@@ -18,17 +18,17 @@ class UsersSeedTable extends Seeder
           [
             'name' => 'John Doe',
             'email' => 'john@xxx.com',
-            'passowrd' => bcrypt('123456')
+            'password' => bcrypt('123456')
           ],
           [
             'name' => 'Johny Doe',
             'email' => 'johnny@xxx.com',
-            'passowrd' => bcrypt('123456')
+            'password' => bcrypt('123456')
           ],
           [
             'name' => 'Nattaly',
             'email' => 'nataly@xxx.com',
-            'passowrd' => bcrypt('123456')
+            'password' => bcrypt('123456')
           ]
         ]);
     }

@@ -1,3 +1,9 @@
+## Blog Laravel Framework 5.2.*
+
+พัฒนาระบบโดย นายบัณฑิต แสนคำภา
+
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
