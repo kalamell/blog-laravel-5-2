@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
@@ -34,6 +35,17 @@ class Post extends Model
     {
       return $this->published_at->diffForHumans();
     }
+
+    public function getBodyHtmlAttribute($value)
+    {
+      return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
+    }
+
+    public function getExceptHtmlAttribute($value)
+    {
+      return $this->except ? Markdown::convertToHtml(e($this->except)) : NULL;
+    }
+
 
     public function scopeLatestFirst($query)
     {
