@@ -12,9 +12,11 @@
 */
 
 Route::get('/', [
-  'uses' => 'BlogController@index'
+  'uses' => 'BlogController@index',
+  'as' => 'blog'
 ]);
 
-Route::get('/blog/show', function () {
-    return view('blog.show');
-});
+Route::get('/blog/{show}', [
+  'uses' => 'BlogController@show',
+  'as' => 'blog.show'
+]);
