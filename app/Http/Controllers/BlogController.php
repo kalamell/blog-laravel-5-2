@@ -36,6 +36,13 @@ class BlogController extends Controller
       }])->orderBy('title', 'asc')->get();
 */
 
+      /*$viewcount = $post->view_count + 1;
+      $post->update([
+        'view_count' => $viewcount
+      ]);*/
+
+      $post->increment('view_count', 1);
+
 
       return view('blog.show', compact('post'));
     }
