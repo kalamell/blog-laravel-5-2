@@ -4,43 +4,56 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                @foreach($posts as $post)
-                <article class="post-item">
+                @if(!$posts->count())
+                  <div class='alert alert-danger'>
+                    <p>ไม่พบข้อมูลที่ท่านต้องการ</p>
+                  </div>
+                @else
 
-                    @if($post->image_url)
-                    <div class="post-item-image">
-                        <a href="{{ route('blog.show', $post->slub ) }}">
-                            <img src="{{ $post->image_url }}" alt="">
-                        </a>
+                  @if( isset($categoryName))
+                    <div class='alert alert-info'>
+                      <p>Category : <strong>{{ $categoryName }}</strong></p>
                     </div>
-                    @endif
+                  @endif
 
-                    <div class="post-item-body">
-                        <div class="padding-10">
-                            <h2><a href="{{ route('blog.show', $post->slub ) }}"> {{ $post->title }}</a></h2>
-                            {!! $post->except_html !!}
+                  @foreach($posts as $post)
+                  <article class="post-item">
 
-                        </div>
+                      @if($post->image_url)
+                      <div class="post-item-image">
+                          <a href="{{ route('blog.show', $post->slub ) }}">
+                              <img src="{{ $post->image_url }}" alt="">
+                          </a>
+                      </div>
+                      @endif
 
-                        <div class="post-meta padding-10 clearfix">
-                            <div class="pull-left">
-                                <ul class="post-meta-group">
-                                    <li><i class="fa fa-user"></i><a href="#"> {{ $post->author->name }} </a></li>
-                                    <li><i class="fa fa-clock-o"></i><time> {{ $post->date }} {{ $post->date_format }}</time></li>
-                                    <li><i class="fa fa-tags"></i><a href="#"> Blog</a></li>
-                                    <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
-                                </ul>
-                            </div>
-                            <div class="pull-right">
-                                <a href="{{ route('blog.show', $post->slub ) }}">Continue Reading &raquo;</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                @endforeach
-                <nav>
-                  {{ $posts->links() }}
-                </nav>
+                      <div class="post-item-body">
+                          <div class="padding-10">
+                              <h2><a href="{{ route('blog.show', $post->slub ) }}"> {{ $post->title }}</a></h2>
+                              {!! $post->except_html !!}
+
+                          </div>
+
+                          <div class="post-meta padding-10 clearfix">
+                              <div class="pull-left">
+                                  <ul class="post-meta-group">
+                                      <li><i class="fa fa-user"></i><a href="#"> {{ $post->author->name }} </a></li>
+                                      <li><i class="fa fa-clock-o"></i><time> {{ $post->date }} {{ $post->date_format }}</time></li>
+                                      <li><i class="fa fa-tags"></i><a href="{{ route('blog.category', $post->category->slug )}}"> {{ $post->category->title }}</a></li>
+                                      <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
+                                  </ul>
+                              </div>
+                              <div class="pull-right">
+                                  <a href="{{ route('blog.show', $post->slub ) }}">Continue Reading &raquo;</a>
+                              </div>
+                          </div>
+                      </div>
+                  </article>
+                  @endforeach
+                  <nav>
+                    {{ $posts->links() }}
+                  </nav>
+                @endif
             </div>
 
             @include('layout.sidebar')

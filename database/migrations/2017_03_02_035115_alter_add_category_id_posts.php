@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CratePostsAddCategoryId extends Migration
+class AlterAddCategoryIdPosts extends Migration
 {
     /**
      * Run the migrations.

@@ -17,26 +17,13 @@
             </div>
             <div class="widget-body">
                 <ul class="categories">
+                  @foreach($categories as $category)
                     <li>
-                        <a href="#"><i class="fa fa-angle-right"></i> Web Development</a>
-                        <span class="badge pull-right">10</span>
+                        <a href="{{ route('blog.category', $category->slug ) }}"><i class="fa fa-angle-right"></i> {{ $category->title }}</a>
+                        <span class="badge pull-right"> {{ $category->posts->count() }}</span>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-angle-right"></i> Web Design</a>
-                        <span class="badge pull-right">10</span>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-angle-right"></i> General</a>
-                        <span class="badge pull-right">10</span>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-angle-right"></i> DIY</a>
-                        <span class="badge pull-right">10</span>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-angle-right"></i> Facebook Development</a>
-                        <span class="badge pull-right">10</span>
-                    </li>
+                  @endforeach
+
                 </ul>
             </div>
         </div>
@@ -50,7 +37,7 @@
                     <li>
                         <div class="post-image">
                             <a href="#">
-                                <img src="img/Post_Image_5_thumb.jpg" />
+                                <img src="/img/Post_Image_5_thumb.jpg" />
                             </a>
                         </div>
                         <div class="post-body">
@@ -63,7 +50,7 @@
                     <li>
                         <div class="post-image">
                             <a href="#">
-                                <img src="img/Post_Image_4_thumb.jpg" />
+                                <img src="/img/Post_Image_4_thumb.jpg" />
                             </a>
                         </div>
                         <div class="post-body">
@@ -76,7 +63,7 @@
                     <li>
                         <div class="post-image">
                             <a href="#">
-                                <img src="img/Post_Image_3_thumb.jpg" />
+                                <img src="/img/Post_Image_3_thumb.jpg" />
                             </a>
                         </div>
                         <div class="post-body">

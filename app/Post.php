@@ -14,6 +14,12 @@ class Post extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function category()
+    {
+      return $this->belongsTo(Category::class);
+    }
+
     public function getImageUrlAttribute($value)
     {
       $imageUrl = "";
@@ -49,7 +55,7 @@ class Post extends Model
 
     public function scopeLatestFirst($query)
     {
-       return $this->orderBy('published_at', 'desc');
+       return $query->orderBy('published_at', 'desc');
 
     }
 
@@ -57,5 +63,10 @@ class Post extends Model
     {
       return $query->where('published_at', '<=', Carbon::now());
     }
+
+    /*public function getRouteKeyName()
+    {
+      return 'slub';
+    }*/
 
 }
