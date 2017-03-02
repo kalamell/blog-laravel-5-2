@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Category;
+use App\User;
 use Carbon\Carbon;
 
 class BlogController extends Controller
@@ -24,7 +25,7 @@ class BlogController extends Controller
                     ->published()
                     ->simplePaginate(3);
 
-         return view('blog.index', compact('posts', 'categories'));
+         return view('blog.index', compact('posts'));
     }
 
     public function show(Post $post)
@@ -36,7 +37,7 @@ class BlogController extends Controller
 */
 
 
-      return view('blog.show', compact('post', 'categories'));
+      return view('blog.show', compact('post'));
     }
 
     public function category(Category $category)
@@ -60,8 +61,22 @@ class BlogController extends Controller
 
       $categoryName = $category->title;
 
-       return view('blog.index', compact('posts', 'categories', 'categoryName'));
+       return view('blog.index', compact('posts', 'categoryName'));
 
+
+    }
+
+    public function author(User $author)
+    {
+      $posts = $author->posts()
+                ->with('category')
+                ->latestFirst()
+                ->published()
+                ->simplePaginate(2);
+
+      $authorName = $author->name;
+
+       return view('blog.index', compact('posts', 'authorName'));
 
     }
 }

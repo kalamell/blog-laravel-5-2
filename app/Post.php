@@ -32,6 +32,20 @@ class Post extends Model
       return $imageUrl;
     }
 
+    public function getImageThumbUrlAttribute($value)
+    {
+      $imageUrl = "";
+      if (! is_null($this->image) )
+      {
+        $thumbnail = str_replace('.jpg', '_thumb.jpg', $this->image);
+
+        $imageUrl = public_path() . "/img/" . $thumbnail;
+        if ( file_exists($imageUrl) ) $imageUrl = asset('img/' . $thumbnail);
+      }
+
+      return $imageUrl;
+    }
+
     public function getDateAttribute($value)
     {
       return $this->created_at->diffForHumans();
@@ -57,6 +71,11 @@ class Post extends Model
     {
        return $query->orderBy('published_at', 'desc');
 
+    }
+
+    public function scopePopular($query)
+    {
+       return $query->orderBy('view_count', 'desc');
     }
 
     public function scopePublished($query)
