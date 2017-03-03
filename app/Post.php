@@ -8,7 +8,7 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
-    //protected $fillable = ['view_count'];
+    protected $fillable = ['title', 'slub', 'except', 'body', 'published_at', 'category_id'];
     protected $dates = ['published_at'];
 
     public function author()
@@ -82,6 +82,27 @@ class Post extends Model
     public function scopePublished($query)
     {
       return $query->where('published_at', '<=', Carbon::now());
+    }
+
+    public function dateFormatted($showTimes = false)
+    {
+      $format = 'd/m/Y';
+      if ($showTimes) $format = $format. ' H:i:s';
+      return is_null($this->created_at) ? '' : $this->created_at->format($format);
+    }
+
+    public function publictionLabel()
+    {
+      if (!$this->published_at) {
+        return '<span class="label label-warning">Draft</span>';
+      }
+      elseif ($this->published_at && $this->published_at->isFuture() ) {
+        return '<span class="label label-info">Schedule</span>';
+      }
+      else {
+        return '<span class="label label-success">Published</span>';
+      }
+
     }
 
     /*public function getRouteKeyName()
